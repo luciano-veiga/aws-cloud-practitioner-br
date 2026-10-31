@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Simulado 01 | AWS Cloud Practitioner CLF-C02</title>
+<style>
+:root{--bg:#f6f7f9;--card:#fff;--tx:#1b1f24;--mu:#5b6570;--bd:#d8dde3;--ac:#ff9900;--ok:#1a7f37;--okb:#e6f4ea;--er:#c62828;--erb:#fdecea}
+@media(prefers-color-scheme:dark){:root{--bg:#0f1318;--card:#1a2028;--tx:#e8ebef;--mu:#9aa5b1;--bd:#2d3641;--ok:#4cc26a;--okb:#14301d;--er:#ff7b72;--erb:#3a1a1a}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+main{max-width:760px;margin:0 auto;padding:20px 16px 48px}
+h1{font-size:1.25rem;margin:0 0 4px}
+.sub{color:var(--mu);font-size:.9rem;margin-bottom:16px}
+.bar{height:8px;background:var(--bd);border-radius:6px;overflow:hidden;margin:8px 0 16px}
+.bar i{display:block;height:100%;background:var(--ac);width:0;transition:width .3s}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:20px}
+.tag{display:inline-block;font-size:.75rem;font-weight:600;color:var(--mu);border:1px solid var(--bd);border-radius:20px;padding:2px 10px;margin-bottom:10px}
+.q{font-size:1.05rem;font-weight:600;margin:0 0 14px}
+.op{display:flex;gap:10px;align-items:flex-start;width:100%;text-align:left;background:transparent;color:inherit;border:1px solid var(--bd);border-radius:10px;padding:10px 12px;margin-bottom:8px;font:inherit;cursor:pointer}
+.op:hover:not(:disabled){border-color:var(--ac)}
+.op b{min-width:1.4em}
+.op.sel{border-color:var(--ac);box-shadow:0 0 0 2px var(--ac) inset}
+.op.ok{background:var(--okb);border-color:var(--ok)}
+.op.er{background:var(--erb);border-color:var(--er)}
+.op:disabled{cursor:default}
+.fb{margin-top:12px;padding:12px;border-radius:10px;font-size:.95rem}
+.fb.ok{background:var(--okb)}.fb.er{background:var(--erb)}
+.btn{margin-top:14px;background:var(--ac);color:#1b1f24;border:0;border-radius:10px;padding:10px 20px;font:inherit;font-weight:700;cursor:pointer}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.big{font-size:2.6rem;font-weight:800;margin:4px 0}
+table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.95rem}
+th,td{text-align:left;padding:8px;border-bottom:1px solid var(--bd)}
+.rv{margin:6px 0;font-size:.92rem}
+a{color:var(--ac)}
+</style>
+</head>
+<body>
+<main>
+<h1>Simulado 01: Visão geral dos 4 domínios</h1>
+<div class="sub">AWS Certified Cloud Practitioner (CLF-C02) | 30 questões originais | Material independente, não afiliado à AWS</div>
+<div class="bar"><i id="pb"></i></div>
+<div id="app"></div>
+</main>
+<script>
+const D=["Conceitos de Nuvem","Segurança e Conformidade","Tecnologia e Serviços","Cobrança e Suporte"];
+const Q=[
+[0,"Uma loja virtual recebe 20 vezes mais acessos na Black Friday e quer aumentar e reduzir a capacidade automaticamente. Qual vantagem da nuvem atende a esse cenário?",["Economia de escala","Elasticidade","Alcance global em minutos","Alta disponibilidade"],[1],"Elasticidade é ajustar recursos conforme a demanda, pagando só pelo que usa."],
+[0,"Qual descrição corresponde a uma Zona de Disponibilidade (AZ)?",["Um ponto de presença para cache de conteúdo","Uma conta separada no AWS Organizations","Um ou mais data centers isolados dentro de uma Região, com energia e rede redundantes","Uma conexão dedicada entre o cliente e a AWS"],[2],"Cada Região tem várias AZs isoladas entre si. A opção A descreve uma Edge Location e a D o Direct Connect."],
+[0,"Uma equipe quer reduzir o consumo de energia e o impacto ambiental das cargas de trabalho. Qual pilar do Well-Architected Framework é o mais relacionado?",["Excelência Operacional","Confiabilidade","Eficiência de Desempenho","Sustentabilidade"],[3],"O pilar de Sustentabilidade foca em minimizar o impacto ambiental, incluindo o uso de energia."],
+[0,"Quais DUAS opções são vantagens da computação em nuvem? (escolha duas)",["Trocar despesas de capital por despesas variáveis","Deixar de adivinhar a capacidade necessária","Ter controle total sobre o hardware dos data centers","Garantir custo mensal idêntico, independente do uso","Eliminar a necessidade de gerenciar a segurança"],[0,1],"Você paga pelo que consome e ajusta a capacidade à necessidade real. A segurança segue compartilhada e o hardware é da AWS."],
+[0,"No AWS CAF, qual perspectiva trata de treinamento da equipe, cultura e gestão da mudança?",["Plataforma","Pessoas","Governança","Operações"],[1],"A perspectiva Pessoas (People) cuida de cultura, habilidades e mudança organizacional."],
+[0,"Para que servem as Edge Locations da AWS?",["Entregar conteúdo com baixa latência, aproximando o cache dos usuários","Executar instâncias EC2 em qualquer cidade","Armazenar backups automáticos do RDS","Hospedar as contas de faturamento"],[0],"São usadas por serviços como o CloudFront para entregar conteúdo mais perto do usuário final."],
+[0,"Uma empresa mantém um banco legado no próprio data center e a aplicação web na AWS, conectados por VPN. Que modelo de implantação é esse?",["Nuvem pública","Nuvem privada","Híbrida","Serverless"],[2],"Combinar recursos on-premises com recursos na nuvem, conectados entre si, é a implantação híbrida."],
+[1,"Qual responsabilidade pertence à AWS no Modelo de Responsabilidade Compartilhada?",["Aplicar patches no sistema operacional convidado das instâncias EC2","Configurar regras de Security Groups","Gerenciar usuários e permissões do IAM","Proteger fisicamente os data centers"],[3],"A AWS cuida da segurança DA nuvem (instalações, hardware, rede). As demais opções são do cliente."],
+[1,"Uma empresa usa o Amazon RDS. Qual tarefa continua sendo responsabilidade do cliente?",["Controlar quem acessa o banco, com Security Groups e usuários do banco","Aplicar patches no sistema operacional do host","Manter o hardware do servidor","Proteger fisicamente o data center"],[0],"No RDS a AWS gerencia hardware e SO. O cliente cuida de acesso, rede e proteção dos dados."],
+[1,"Qual é a prática recomendada para o usuário root de uma conta AWS?",["Criar chaves de acesso do root e usá-las em scripts","Compartilhar a senha do root com a equipe de TI","Ativar MFA e usar o root só em tarefas que exigem esse nível de acesso","Usar o root no dia a dia para evitar erros de permissão"],[2],"O root tem acesso irrestrito. Proteja com MFA e use usuários ou roles do IAM no cotidiano."],
+[1,"Uma aplicação em EC2 precisa ler arquivos de um bucket S3 sem guardar chaves de acesso no código. Qual a melhor solução?",["Gravar chaves de acesso em um arquivo de configuração","Associar um IAM role à instância EC2","Usar as credenciais do root","Compartilhar um único usuário IAM entre as aplicações"],[1],"O IAM role entrega credenciais temporárias, sem chaves fixas e com menor privilégio."],
+[1,"Qual serviço analisa logs do CloudTrail, VPC Flow Logs e consultas DNS para detectar atividades suspeitas na conta?",["Amazon Inspector","Amazon Macie","AWS Artifact","Amazon GuardDuty"],[3],"GuardDuty é a detecção de ameaças. O Inspector busca vulnerabilidades e o Macie descobre dados sensíveis no S3."],
+[1,"Um auditor pediu o relatório SOC da AWS. Onde baixá-lo?",["AWS Artifact","AWS Config","AWS Shield","AWS Trusted Advisor"],[0],"O AWS Artifact é o portal de relatórios de auditoria e acordos de conformidade."],
+[1,"Uma aplicação web precisa bloquear requisições com padrões de SQL injection. Qual serviço atende?",["AWS Shield Standard","Amazon GuardDuty","AWS WAF","AWS KMS"],[2],"O AWS WAF é o firewall de aplicações web. O Shield protege contra DDoS."],
+[1,"Qual serviço permite criar e controlar as chaves de criptografia usadas para proteger dados?",["AWS Shield","AWS KMS","AWS Artifact","Amazon Inspector"],[1],"O AWS KMS cria, armazena e controla chaves de criptografia."],
+[1,"A equipe de segurança precisa descobrir qual usuário excluiu um bucket S3 e quando. Qual serviço registra essas chamadas de API?",["Amazon CloudWatch","AWS Config","AWS Trusted Advisor","AWS CloudTrail"],[3],"O CloudTrail registra quem fez cada chamada de API, quando e de onde."],
+[2,"Qual serviço executa código em resposta a eventos, sem gerenciar servidores, com cobrança pelo tempo de execução?",["AWS Lambda","Amazon EC2","Amazon EBS","Amazon RDS"],[0],"O Lambda é computação serverless. No EC2 você gerencia as instâncias."],
+[2,"Uma empresa quer executar contêineres sem gerenciar servidores ou clusters de instâncias EC2. Qual opção atende?",["Amazon EC2 Auto Scaling","AWS Fargate","Elastic Load Balancing","AWS CloudFormation"],[1],"O Fargate é o mecanismo serverless para contêineres, usado com ECS e EKS."],
+[2,"Dados de conformidade serão acessados 1 ou 2 vezes por ano, esperar até 12 horas pela recuperação é aceitável e o menor custo é prioridade. Qual classe do S3 escolher?",["S3 Standard","S3 Standard-IA","S3 One Zone-IA","S3 Glacier Deep Archive"],[3],"O Glacier Deep Archive é a classe de menor custo para retenção de longo prazo com acesso raro."],
+[2,"Qual serviço oferece um sistema de arquivos compartilhado e elástico, acessível por várias instâncias EC2 Linux ao mesmo tempo?",["Amazon EBS","Amazon S3","Amazon EFS","Instance Store"],[2],"O EFS é um sistema de arquivos NFS gerenciado. O EBS é disco de bloco e o S3 é armazenamento de objetos."],
+[2,"Instâncias em uma sub-rede privada precisam baixar atualizações da internet sem aceitar conexões iniciadas de fora. Qual componente resolve?",["NAT Gateway","Internet Gateway","VPC Peering","AWS Direct Connect"],[0],"O NAT Gateway permite tráfego de saída das sub-redes privadas e bloqueia conexões iniciadas de fora."],
+[2,"Qual serviço é um DNS gerenciado e de alta disponibilidade, que roteia por saúde ou latência?",["Amazon CloudFront","AWS Direct Connect","Amazon Route 53","Amazon API Gateway"],[2],"O Route 53 oferece registro de domínios, DNS e políticas de roteamento."],
+[2,"Uma aplicação precisa de banco NoSQL chave-valor, com latência de milissegundos e escala automática, sem servidores para gerenciar. Qual serviço?",["Amazon RDS","Amazon DynamoDB","Amazon Redshift","Amazon Aurora"],[1],"DynamoDB é NoSQL gerenciado. RDS e Aurora são relacionais e o Redshift é data warehouse."],
+[2,"Qual o principal objetivo de habilitar Multi-AZ no Amazon RDS?",["Melhorar a velocidade de leitura","Reduzir o custo da instância","Armazenar backups em outra Região","Alta disponibilidade, com failover automático para uma réplica standby em outra AZ"],[3],"Melhorar leitura é papel das Read Replicas. O Multi-AZ foca em disponibilidade."],
+[2,"Quais DUAS opções são serviços da AWS para executar e orquestrar contêineres? (escolha duas)",["Amazon S3","Amazon ECS","AWS KMS","Amazon Route 53","Amazon EKS"],[1,4],"O ECS é o orquestrador da AWS e o EKS é o Kubernetes gerenciado."],
+[2,"Qual serviço permite monitorar a utilização de CPU de instâncias EC2 e disparar alarmes ao ultrapassar um limite?",["Amazon CloudWatch","AWS CloudTrail","AWS Artifact","AWS Organizations"],[0],"O CloudWatch coleta métricas, logs e eventos e cria alarmes."],
+[3,"Uma empresa executa processamento em lote tolerante a interrupções e quer o menor custo possível. Qual modelo de compra de EC2 é o mais indicado?",["On-Demand","Reserved Instances","Spot Instances","Dedicated Hosts"],[2],"Spot usa capacidade ociosa com grandes descontos, mas pode ser interrompida."],
+[3,"Uma carga roda 24 horas por dia, de forma constante, por pelo menos um ano. Qual opção reduz o custo em troca de compromisso de uso?",["Instâncias Spot","Savings Plans","On-Demand sem compromisso","Apenas a camada gratuita"],[1],"Savings Plans dão desconto em troca de compromisso de 1 ou 3 anos, ideal para uso previsível."],
+[3,"Antes de implantar uma nova arquitetura, a equipe quer estimar o custo mensal dos serviços planejados. Qual ferramenta usar?",["AWS Pricing Calculator","AWS Cost Explorer","AWS Budgets","AWS Artifact"],[0],"O Pricing Calculator estima custos de arquiteturas futuras. O Cost Explorer analisa custos que já ocorreram."],
+[3,"Um gestor quer receber um alerta por e-mail quando o gasto previsto do mês passar de US$ 100. Qual serviço configura isso?",["AWS Cost Explorer","AWS Pricing Calculator","AWS CloudTrail","AWS Budgets"],[3],"O AWS Budgets cria orçamentos e envia alertas quando o gasto real ou previsto passa do limite."]
+];
+const L="ABCDE",app=document.getElementById("app"),pb=document.getElementById("pb");
+let i,sel,done,res;
+function start(){i=0;res=[];render()}
+function render(){
+  const q=Q[i],multi=q[3].length>1;sel=new Set();done=false;
+  pb.style.width=(i/Q.length*100)+"%";
+  app.innerHTML=`<div class="card"><span class="tag">Questão ${i+1} de ${Q.length} | ${D[q[0]]}</span>
+  <p class="q">${q[1]}</p>
+  ${q[2].map((o,k)=>`<button class="op" data-k="${k}"><b>${L[k]})</b><span>${o}</span></button>`).join("")}
+  <div id="fb"></div><button class="btn" id="go" disabled>Confirmar</button></div>`;
+  const go=document.getElementById("go");
+  app.querySelectorAll(".op").forEach(b=>b.onclick=()=>{
+    if(done)return;const k=+b.dataset.k;
+    if(multi){sel.has(k)?sel.delete(k):sel.add(k)}else{sel.clear();sel.add(k)}
+    app.querySelectorAll(".op").forEach(x=>x.classList.toggle("sel",sel.has(+x.dataset.k)));
+    go.disabled=sel.size!==q[3].length});
+  go.onclick=()=>{
+    if(!done){
+      done=true;const ok=q[3].length===sel.size&&q[3].every(k=>sel.has(k));res.push(ok);
+      app.querySelectorAll(".op").forEach(x=>{const k=+x.dataset.k;x.disabled=true;x.classList.remove("sel");
+        if(q[3].includes(k))x.classList.add("ok");else if(sel.has(k))x.classList.add("er")});
+      document.getElementById("fb").innerHTML=`<div class="fb ${ok?"ok":"er"}"><b>${ok?"Correto!":"Incorreto."}</b> ${q[4]}</div>`;
+      go.textContent=i<Q.length-1?"Próxima":"Ver resultado";
+    }else{i++;i<Q.length?render():result()}
+  };
+}
+function result(){
+  pb.style.width="100%";
+  const t=res.filter(Boolean).length,p=Math.round(t/Q.length*100);
+  const dom=D.map((n,d)=>{const idx=Q.map((q,k)=>q[0]===d?k:-1).filter(k=>k>=0);const a=idx.filter(k=>res[k]).length;return [n,a,idx.length]});
+  const msg=p>=90?"Excelente! Siga para o próximo simulado.":p>=80?"Meta atingida. Revise os erros e refaça depois.":p>=60?"Quase lá. Releia os domínios em que errou mais e refaça os labs.":"Volte ao roteiro e estude por domínio antes de tentar de novo.";
+  const wrong=Q.map((q,k)=>res[k]?"":`<div class="rv"><b>Q${k+1}</b> (${D[q[0]]}): ${q[4]}</div>`).join("");
+  app.innerHTML=`<div class="card"><span class="tag">Resultado final</span>
+  <div class="big">${t} / ${Q.length} (${p}%)</div><p>${msg}</p>
+  <table><tr><th>Domínio</th><th>Acertos</th><th>%</th></tr>${dom.map(d=>`<tr><td>${d[0]}</td><td>${d[1]} / ${d[2]}</td><td>${Math.round(d[1]/d[2]*100)}%</td></tr>`).join("")}</table>
+  ${wrong?`<h3>Revise estas questões</h3>${wrong}`:"<p>Você acertou tudo!</p>"}
+  <p class="rv">A nota oficial do exame usa escala de 100 a 1000 (mínimo 700) e não equivale a uma porcentagem. Use este percentual como referência de estudo.</p>
+  <button class="btn" id="re">Refazer simulado</button></div>`;
+  document.getElementById("re").onclick=start;
+}
+start();
+</script>
+</body>
+</html>
