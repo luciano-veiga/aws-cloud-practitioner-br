@@ -211,7 +211,7 @@ Pasta: [`simulados-e-exercicios/`](./simulados-e-exercicios)
 
 | Simulado | Questões | Foco | Status |
 |---|:---:|---|---|
-| Simulado 01 | 30 | Visão geral dos 4 domínios | Em breve |
+| [Simulado 01 interativo](https://luciano-veiga.github.io/aws-cloud-practitioner-br/simulados-e-exercicios/simulado-01.html) ([versão em texto](./simulados-e-exercicios/simulado-01.md)) | 30 | Visão geral dos 4 domínios | Disponível |
 | Simulado 02 | 30 | Segurança e Conformidade | Em breve |
 | Simulado 03 | 30 | Tecnologia e Serviços | Em breve |
 | Simulado 04 | 30 | Cobrança e Suporte | Em breve |
