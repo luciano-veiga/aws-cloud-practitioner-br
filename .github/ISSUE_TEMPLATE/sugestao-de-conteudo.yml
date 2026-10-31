@@ -1,0 +1,29 @@
+name: Sugerir conteúdo
+description: Ideia de tópico, lab, questão ou melhoria para o repositório.
+title: "[Sugestão] "
+labels: ["enhancement"]
+body:
+  - type: dropdown
+    id: tipo
+    attributes:
+      label: Tipo de sugestão
+      options:
+        - Novo tópico
+        - Novo lab
+        - Novas questões de simulado
+        - Melhoria no repositório
+    validations:
+      required: true
+  - type: textarea
+    id: ideia
+    attributes:
+      label: Qual é a sua ideia?
+      description: Descreva o que você gostaria de ver e por que ajudaria quem estuda.
+    validations:
+      required: true
+  - type: checkboxes
+    id: contribuir
+    attributes:
+      label: Participação
+      options:
+        - label: Posso ajudar a escrever esse conteúdo

@@ -1,0 +1,42 @@
+name: Reportar erro em questão ou conteúdo
+description: Encontrou um erro técnico, de gabarito ou de digitação? Conte aqui.
+title: "[Erro] "
+labels: ["bug"]
+body:
+  - type: dropdown
+    id: onde
+    attributes:
+      label: Onde está o erro?
+      options:
+        - Simulado (questão ou gabarito)
+        - Conteúdo dos domínios
+        - Lab prático
+        - README ou outro documento
+    validations:
+      required: true
+  - type: input
+    id: local
+    attributes:
+      label: Arquivo e questão ou linha
+      placeholder: "Ex: simulado-01, questão 19"
+    validations:
+      required: true
+  - type: textarea
+    id: erro
+    attributes:
+      label: O que está errado?
+      description: Explique o problema e, se possível, a correção que você sugere.
+    validations:
+      required: true
+  - type: input
+    id: fonte
+    attributes:
+      label: Fonte oficial
+      description: Link da documentação da AWS que comprova a correção.
+  - type: checkboxes
+    id: termos
+    attributes:
+      label: Confirmações
+      options:
+        - label: Não incluí dados sensíveis (chaves, IDs de conta, e-mails)
+          required: true

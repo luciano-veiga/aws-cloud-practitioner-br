@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Guia de contribuição
+    url: https://github.com/luciano-veiga/aws-cloud-practitioner-br/blob/main/CONTRIBUTING.md
+    about: Leia antes de abrir uma issue ou enviar um Pull Request.
